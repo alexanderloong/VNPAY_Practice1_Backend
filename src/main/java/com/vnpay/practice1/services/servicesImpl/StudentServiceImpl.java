@@ -21,4 +21,28 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll();
     }
 
+    @Override
+    public StudentEntity getStudentById(long id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public StudentEntity createStudent(StudentEntity studentEntity) {
+
+        return studentRepository.save(studentEntity);
+    }
+
+    @Override
+    public StudentEntity delStudent(long id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public StudentEntity updateStudent(StudentEntity studentEntity, long id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }
