@@ -21,7 +21,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class StudentEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String lastName;

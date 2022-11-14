@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.vnpay.practice1.entities.StudentEntity;
+import com.vnpay.practice1.exceptions.NotFoundException;
 import com.vnpay.practice1.repositories.StudentRepository;
 import com.vnpay.practice1.services.StudentService;
 
@@ -17,8 +18,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<StudentEntity> getAllStudent() {
+        List<StudentEntity> listStudent = studentRepository.findAll();
 
-        return studentRepository.findAll();
+        if (listStudent.isEmpty() == true)
+            throw new NotFoundException("Không có dữ liệu!");
+
+        return listStudent;
     }
 
     @Override
