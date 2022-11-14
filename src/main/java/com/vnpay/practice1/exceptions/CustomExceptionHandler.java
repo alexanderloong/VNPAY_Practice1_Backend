@@ -12,4 +12,10 @@ public class CustomExceptionHandler {
     public ErrorResponse handlerNotFoundException(NotFoundException ex) {
         return new ErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage());
     }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorResponse handlerException(Exception ex) {
+        return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+    }
 }
