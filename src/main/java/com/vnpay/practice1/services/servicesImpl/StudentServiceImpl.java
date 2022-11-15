@@ -1,6 +1,7 @@
 package com.vnpay.practice1.services.servicesImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -28,8 +29,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentEntity getStudentById(long id) {
-        // TODO Auto-generated method stub
-        return null;
+        Optional<StudentEntity> student = studentRepository.findById(id);
+
+        if (student.isEmpty() == true)
+            throw new NotFoundException("Không có dữ liệu với ID là " + id);
+
+        return student.get();
     }
 
     @Override
@@ -40,14 +45,19 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentEntity delStudent(long id) {
-        // TODO Auto-generated method stub
-        return null;
+        StudentEntity student = getStudentById(id);
+
+        studentRepository.deleteById(id);
+
+        return student;
     }
 
     @Override
     public StudentEntity updateStudent(StudentEntity studentEntity, long id) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+        getStudentById(id);
 
+        studentEntity.setId(id);
+
+        return studentRepository.save(studentEntity);
+    }
 }
